@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Plus+Jakarta+Sans&family=Roboto:wght@100&display=swap');
+
 .App {
- 
+  background-color: rgb(36, 37, 38);
+  width: 100vw;
+  height: 100vh;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
