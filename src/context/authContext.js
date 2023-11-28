@@ -1,17 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import { auth } from '../firebase/config';
 import { createContext, useContext } from 'react';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from 'firebase/auth';
 
 export const authContext = createContext()
 
 export const useAuth = () => {
 
-  const context = useContext(authContext)
-  if(!context){
-    console.log("erorr creating auth context")
-  }
-  return context;
+  return useContext(authContext);
 }
 
 export function AuthProvider({children}){
@@ -29,19 +25,19 @@ export function AuthProvider({children}){
     return ()=> loggedIn()
   }, [])
 
-  const register = async(email, password) =>{
-    const response = await createUserWithEmailAndPassword(auth, email, password);
-    console.log(response)
+  const register = async(email, userName, password) =>{
+    await createUserWithEmailAndPassword(auth, email, password);
+
+    await updateProfile(auth.currentUser, { displayName: userName });
   };
 
   const login = async(email, password) => {
-    const response = await signInWithEmailAndPassword(auth, email, password);
-    console.log(response)
+    await signInWithEmailAndPassword(auth, email, password);
+
   }
 
   const logout = async () =>{
-    const response = await signOut(auth)
-    console.log(response)
+    await signOut(auth)
 
   }
 
