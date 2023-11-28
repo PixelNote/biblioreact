@@ -1,0 +1,58 @@
+:root {
+  --white: rgb(226, 226, 226);
+  --light-gray: rgb(176, 178, 184);
+  --red: rgb(235, 60, 60);
+
+}
+
+.landing{
+  display: flex;
+  width: 60%;
+}
+
+.land-content{
+  color: var(--white);
+  width: 50%;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+}
+
+.land-content-title{
+  font-weight: 800;
+  font-size: 48px;
+  margin-bottom: -80px;
+}
+
+.land-content-text{
+  font-size: 24px;
+  color: var(--light-gray);
+  margin-bottom: -30px;
+}
+
+.land-image{
+  width: 50%;
+}
+.land-image img{
+  width: 600px;
+}
+
+.land-button{
+  cursor: pointer;
+  color: var(--white);
+  font-size: 28px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
+  padding: 3px 15px 5px 15px;
+  background-color: var(--red);
+  border: 1px solid rgb(255, 107, 107);
+  border-radius: 6px;
+  transition: 0.5s;
+
+}
+
+.land-button:hover{
+  background-color: rgb(214, 27, 27);
+}

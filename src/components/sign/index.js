@@ -4,6 +4,30 @@ import { Link } from 'react-router-dom'
 
 const Sign = (props) => {
 
+  const userSignUp = () =>{
+    if(props.title==='Regístrate'){
+      return (
+        <>
+          <label className="form-label" htmlFor='name'>
+            Nombre
+          </label>
+          <input
+            className="form-input"
+            name="name"
+            type="text"
+            placeholder="Tu nombre"
+            onChange={(e) => {
+              props.nameChange(e.target.value);
+            }}
+            value={props.name}
+            required = 'required'
+          />
+        </>
+      );
+    };
+  }
+
+
   return (
     <>
       <div className="brand">
@@ -33,7 +57,9 @@ const Sign = (props) => {
                   props.emailChange(e.target.value);
                 }}
                 value={props.email}
+                required="required"
               />
+              {userSignUp()}
               <label className="form-label" htmlFor="password">
                 Contraseña
               </label>
@@ -46,17 +72,17 @@ const Sign = (props) => {
                   props.passwordChange(e.target.value);
                 }}
                 value={props.password}
+                required="required"
               />
-              <Link to={props.linkButton}>
-                <button
-                  onClick={props.sign}
-                  type="submit"
-                  form="sign-form"
-                  className="form-button"
-                >
-                  {props.button}
-                </button>
-              </Link>
+              {props.error && <p className="form-error">{props.error}</p>}
+              <button
+                onClick={props.sign}
+                type="button"
+                form="sign-form"
+                className="form-button"
+              >
+                {props.button}
+              </button>
             </form>
             <p className="left-context">
               {props.context}
@@ -86,5 +112,7 @@ const Sign = (props) => {
   );
 
 }
+
+
 
 export default Sign;
