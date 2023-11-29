@@ -4,6 +4,7 @@ import Home from "./pages/home";
 import SignUp from "./pages/signup";
 import SignIn from "./pages/signin";
 import Library from  "./pages/library";
+import AddBook from "./pages/addBook";
 import "./App.css";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/library" element={<Library/>}/>
+          <Route path="/library/add" element={<AddBook/>}/>
         </Routes>
       </div>
     </AuthProvider>

@@ -17,7 +17,7 @@ export default function NavBar(props){
         </h1>
       </div>
       {props.displayName ? (
-        <Link to="/libray">
+        <Link to="/library">
           <button className='nav-signin'>Acceder</button>
         </Link>
       ) : (
