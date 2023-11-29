@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../App.css';
 import Sign from '../components/sign/index';
 import { useNavigate } from 'react-router-dom';
@@ -13,6 +13,12 @@ export default function SignIn(){
   const [ email, setEmail ] = useState("");
 
   const [ password, setPassword ] = useState('');
+
+  useEffect(()=>{
+    if(auth.user){
+      navigate('/library')
+    }
+  },[auth.user])
 
   const handleEmailChange = (email) => {
     setEmail(email);

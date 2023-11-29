@@ -8,7 +8,6 @@ export default function Home() {
 
   const auth = useAuth();
   const { displayName } = auth.user
-  console.log(displayName)
   return (
     <>
       <NavBar displayName={displayName} />
