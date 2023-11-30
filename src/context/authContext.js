@@ -26,13 +26,28 @@ export function AuthProvider({children}){
   }, [])
 
   const register = async(email, userName, password) =>{
-    await createUserWithEmailAndPassword(auth, email, password);
-
+    try{
+    const response = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    
     await updateProfile(auth.currentUser, { displayName: userName });
+    return response
+    }catch(e){
+      return e.message
+    }
   };
 
   const login = async(email, password) => {
-    await signInWithEmailAndPassword(auth, email, password);
+    try{
+     return await signInWithEmailAndPassword(auth, email, password);
+
+    }catch(e){
+      return e.message;
+    }
+    
 
   }
 
