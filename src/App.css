@@ -18,9 +18,13 @@
   background-color: rgb(27, 27, 27);
 }
 
-.library-page{
+.library-page {
   width: 80%;
   min-height: 100vh;
+}
+
+.library-page a{
+  text-decoration: none;
 }
 .library-nav{
   display: flex;

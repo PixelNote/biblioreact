@@ -6,6 +6,8 @@ import SignIn from "./pages/signin";
 import Library from  "./pages/library";
 import AddBook from "./pages/addBook";
 import "./App.css";
+import Book from "./components/book";
+import UpdateBook from "./pages/updateBook";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/library" element={<Library/>}/>
           <Route path="/library/add" element={<AddBook/>}/>
+          <Route exact path="/library/books/:title" element={<Book/>}/>
+          <Route exact path="/library/books/update/:titleBook" element={<UpdateBook/>}/>
         </Routes>
       </div>
     </AuthProvider>
