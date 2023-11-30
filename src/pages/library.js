@@ -79,16 +79,19 @@ export default function Library(){
           </div>
         </div>
         <div className="library-books">
-          {filteredBooks.map((element) => (
-            <div className="book" key={element.id}>
-              <img
-                className="book-image"
-                src={element.image}
-                alt={`imagen de ${element.title}`}
-              />
-              <p className="book-title">{element.title}</p>
-            </div>
-          ))}
+          {filteredBooks ? filteredBooks.map((element) => (
+            <Link to={`/library/books/${element.title}`}>
+              <div className="book" key={element.id}>
+                <img
+                  className="book-image"
+                  src={element.image}
+                  alt={`imagen de ${element.title}`}
+                />
+                <p className="book-title">{element.title}</p>
+              </div>
+            </Link>
+          )):
+        <p className='nobooks'> Parece que no tienes libros guardados, ve a agregar un libro para empezar. </p>}
         </div>
       </div>
     </div>

@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/authContext";
-import { useNavigate } from "react-router-dom";
-import { saveBook } from "../services/firebaseService";
+import { useNavigate, useParams } from "react-router-dom";
+import { updateBook } from "../services/firebaseService";
 import { Link } from "react-router-dom";
-import Create from "../components/createUpdate/indexA";
+import Update from "../components/createUpdate/indexU";
+import { getBook } from "../services/firebaseService";
 import '../components/createUpdate/index.css'
 
-export default function AddBook() {
+export default function UpdateBook() {
 
   const auth = useAuth();
 
   const navigate = useNavigate();
 
   const { email } = auth.user
+
+  const { titleBook } = useParams();
+
 
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -40,6 +44,20 @@ const handleDateChange = (date) => {
   setDate(date);
 };
 
+useEffect(() => {
+  const fetchBook = async () => {
+    const result = await getBook(email, titleBook);
+    setTitle(result.title);
+    setAuthor(result.author);
+    setGenre(result.genre);
+    setDate(result.date);
+  };
+  fetchBook();
+}, []);
+
+
+
+
 
   return (
     <div className="page">
@@ -48,9 +66,9 @@ const handleDateChange = (date) => {
           <span class="material-symbols-outlined">chevron_left</span>Volver
         </button>
       </Link>
-      <Create
-        titleTop="Agregar  un libro"
-        buttonText="Añadir"
+      {title && <Update
+        titleTop="Actualizar"
+        buttonText="Actualizar"
         titleChange={handleTitleChange}
         imageChange={handleImageChange}
         authorChange={handleAuthorChange}
@@ -58,12 +76,13 @@ const handleDateChange = (date) => {
         dateChange={handleDateChange}
         email={email}
         image={image}
+        currentTitle={titleBook}
         title={title}
         author={author}
         genre={genre}
         date={date}
-        buttonFunction={saveBook}
-      />
+        buttonFunction={updateBook}
+      />}
     </div>
   );
 }

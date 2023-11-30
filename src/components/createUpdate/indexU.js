@@ -1,7 +1,7 @@
 import React from "react";
 import './index.css'
 
-export default function CreateUpdate(props) {
+export default function Update(props) {
 
   return (
     <div className="page">
@@ -21,6 +21,7 @@ export default function CreateUpdate(props) {
             onChange={(e) => {
               props.titleChange(e.target.value);
             }}
+            value={props.title}
           /> 
 
           <label className="form-label" htmlFor="image">
@@ -51,6 +52,7 @@ export default function CreateUpdate(props) {
             onChange={(e) => {
               props.authorChange(e.target.value);
             }}
+            value={props.author}
           />
 
           <label className="form-label" htmlFor="genre">
@@ -66,26 +68,36 @@ export default function CreateUpdate(props) {
             onChange={(e) => {
               props.genreChange(e.target.value);
             }}
+            value={props.genre}
           />
 
-          <label className="form-label" htmlFor="data">
+          <label className="form-label" htmlFor="date">
             Año de publicación
           </label>
 
           <input
             className="form-input"
-            name="data"
+            name="date"
             type="number"
             placeholder="1943"
             required="required"
             onChange={(e) => {
               props.dateChange(e.target.value);
             }}
+            value={props.date}
           />
 
           <button
             onClick={() => {
-              props.buttonFunction(props.email, props.image, props.title, props.author, props.genre, props.date);
+              props.buttonFunction(
+                props.email,
+                props.currentTitle,
+                props.title,
+                props.image,
+                props.author,
+                props.genre,
+                props.date
+              );
             }}
             type="button"
             form="add-form"
