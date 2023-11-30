@@ -39,7 +39,8 @@ export default function SignUp(){
     setNameRegister(name);
   };
 
-  const handleRegister = () =>{
+  const handleRegister = async () =>{
+    let response = ''
     const regex = new RegExp(
       "(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$"
     );
@@ -47,10 +48,14 @@ export default function SignUp(){
         setError(
           "La contraseña debe ser mayor a 8 carácteres, debe contener al menos una mayuscula, minuscula, número y carácter especial."
         );
-    } else if(emailRegister && nameRegister) {
-      setError("");
-      auth.register(emailRegister, nameRegister, passwordRegister);
-      navigate("/signin");
+    } else if(emailRegister && nameRegister) {     
+      response = await auth.register(emailRegister, nameRegister, passwordRegister);
+      if (response === "Firebase: Error (auth/email-already-in-use)."){
+        setError('Correo ya esta registrado.')
+      }else{
+        setError("");
+        navigate("/signin");
+      }
     }else{
       setError(
         "Completa los campos."

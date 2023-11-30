@@ -28,11 +28,20 @@ export default function SignIn(){
     setPassword(password);
   }
 
-  const handleLogin = () =>{
+  const handleLogin = async () =>{
 
-    if(email && password){
-      auth.login(email, password);
-      navigate("/");
+    const response = await auth.login(email, password);
+
+    if(response==='Firebase: Error (auth/invalid-login-credentials).')
+    {
+      alert('Correo o contraseña incorrectos.')
+    }else if (
+      response ===
+      "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)."
+    ) {
+      alert('Su cuenta ha sido desactivada temporalmente debido a multiples ingresos de sesión fallidos.')
+    }else{
+      navigate("/library");
     }
   }
 
